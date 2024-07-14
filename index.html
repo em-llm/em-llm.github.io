@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EM-LLM: Human-like Episodic Memory for Infinite Context LLMs</title>
+    <meta name="description" content="A novel approach integrating human-like episodic memory into Large Language Models for enhanced long-context processing">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>EM-LLM: Human-like Episodic Memory for Infinite Context LLMs</h1>
+            <p class="authors">Zafeirios Fountas, Martin A Benfeghoul, Adnan Oomerjee, Fenia Christopoulou, Gerasimos Lampouras, Haitham Bou-Ammar, Jun Wang</p>
+            <p class="affiliations">Huawei Noah's Ark Lab, London, UK | University College London, UK</p>
+            <!-- <p class="conference">xxx 2024 (oral/poster)</p>-->
+            <nav>
+                <a href="#" class="button">Paper</a>
+                <a href="#" class="button">Code</a>
+                <a href="#" class="button">Video</a>
+            </nav>
+        </div>
+        <div class="header-visual">
+            <!-- Replace with actual path to your key figure or video embed -->
+            <!-- <img src="video.png" alt="EM-LLM Key Figure"> -->
+        </div>
+    </header>
+
+    <main>
+        <section id="abstract">
+            <h2>Abstract</h2>
+            <p>Large language models (LLMs) have shown remarkable capabilities, but still struggle with processing extensive contexts, limiting their ability to maintain coherence and accuracy over long sequences. In contrast, the human brain excels at organising and retrieving episodic experiences across vast temporal scales, spanning a lifetime. We introduce EM-LLM, a novel approach that integrates key aspects of human episodic memory and event cognition into LLMs, enabling them to effectively handle practically infinite context lengths while maintaining computational efficiency.</p>
+            <p>EM-LLM organises sequences of tokens into coherent episodic events using a combination of Bayesian surprise and graph-theoretic boundary refinement in an on-line fashion. When needed, these events are retrieved through a two-stage memory process, combining similarity-based and temporally contiguous retrieval for efficient and human-like access to relevant information.</p>
+            <p>Experiments on the LongBench dataset demonstrate EM-LLM's superior performance, outperforming the state-of-the-art InfLLM model with an overall relative improvement of 4.3% across various tasks, including a 33% improvement on the PassageRetrieval task. Furthermore, our analysis reveals strong correlations between EM-LLM's event segmentation and human-perceived events, suggesting a bridge between this artificial system and its biological counterpart.</p>
+        </section>
+
+        <section id="architecture">
+            <h2>Architecture</h2>
+            <p>EM-LLM integrates crucial aspects of event cognition and episodic memory into Transformer-based LLMs. Our approach includes:</p>
+            <ul>
+                <li>Surprise-based event segmentation</li>
+                <li>Graph-theoretic boundary refinement</li>
+                <li>Two-stage memory retrieval process</li>
+            </ul>
+            <img src="Fig_architecture_only.svg" alt="EM-LLM Architecture" class="figure" style="width: 80%;">
+        </section>
+
+        <section id="results">
+            <h2>Performance Results</h2>
+            <p>
+                We tested EM-LLM on the <a href="#" class="dataset-link"><strong>LongBench</strong></a> dataset, across a wide range of long-context tasks, comparing it to the current state-of-the-art <a href="#" class="dataset-link"><strong>InfLLM</strong></a> model. Here's a quick look at how we did:
+            </p>
+            <div class="table-container">
+                <table class="results-table concise">
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>InfLLM</th>
+                            <th>Best EM-LLM (Imp.)</th>
+                            <th>Task</th>
+                            <th>InfLLM</th>
+                            <th>Best EM-LLM (Imp.)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NarrativeQA</td>
+                            <td>22.12</td>
+                            <td>22.45 <span class="improvement">(+1.49%)</span></td>
+                            <td>SAMSum</td>
+                            <td>42.52</td>
+                            <td>42.89 <span class="improvement">(+0.87%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>MultiNews</td>
+                            <td>26.70</td>
+                            <td>26.69 <span class="decline">(-0.04%)</span></td>
+                            <td>2WikiMQA</td>
+                            <td>22.31</td>
+                            <td>23.74 <span class="improvement">(+6.41%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>Qasper</td>
+                            <td>29.33</td>
+                            <td>29.38 <span class="improvement">(+0.17%)</span></td>
+                            <td>PassageRetrieval</td>
+                            <td>64.00</td>
+                            <td>85.42 <span class="improvement">(+33.47%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>TREC</td>
+                            <td>69.00</td>
+                            <td>70.50 <span class="improvement">(+2.17%)</span></td>
+                            <td>Musique</td>
+                            <td>17.68</td>
+                            <td>18.77 <span class="improvement">(+6.17%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>MultiFieldQA</td>
+                            <td>47.42</td>
+                            <td>47.62 <span class="improvement">(+0.42%)</span></td>
+                            <td>LCC</td>
+                            <td>56.67</td>
+                            <td>57.03 <span class="improvement">(+0.63%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>TriviaQA</td>
+                            <td>86.67</td>
+                            <td>87.62 <span class="improvement">(+1.10%)</span></td>
+                            <td>GovReport</td>
+                            <td>31.03</td>
+                            <td>31.62 <span class="improvement">(+1.90%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>HotpotQA</td>
+                            <td>36.56</td>
+                            <td>39.99 <span class="improvement">(+9.38%)</span></td>
+                            <td>RepoBench-P</td>
+                            <td>52.97</td>
+                            <td>53.68 <span class="improvement">(+1.34%)</span></td>
+                        </tr>
+                        <tr>
+                            <td>QMSum</td>
+                            <td>23.49</td>
+                            <td>23.99 <span class="improvement">(+2.13%)</span></td>
+                            <td><strong>Average Score:</strong></td>
+                            <td><strong>41.90</strong></td>
+                            <td><strong>43.70</strong> <span class="improvement">(+4.30%)</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="table-caption">
+                <strong>Table 1:</strong> EM-LLM performance on LongBench compared to our baseline InfLLM. 
+                The "Best EM-LLM" column shows the highest score achieved by an EM-LLM variant (either with/out boundary refinement and contiguity buffer), with the relative improvement over InfLLM in parentheses.
+            </p>
+            <p>
+                As you can see, EM-LLM shows consistent improvements, with standout performances in PassageRetrieval and HotpotQA.
+            </p>
+            
+            <p>
+                But wait, there's more! We're currently running tests with additional models and datasets, including <a href="#" class="dataset-link"><strong>∞-Bench</strong></a> with very promising results. 
+                Stay tuned for these expanded results, which will give an even fuller picture of EM-LLM's capabilities.
+            </p>
+        </section>
+
+        <section id="human-correlation">
+            <h2>Human-like Event Segmentation</h2>
+            <p>
+                Our analysis reveals strong correlations between EM-LLM's surprise-based event segmentation and human-perceived events, suggesting a bridge between these two systems. 
+                For example, consider the figure below:
+            </p>
+            <img src="Fig_human_res_llama2_2.svg" alt="Human-LLM Correlation in Event Segmentation" class="figure">
+            <p>
+                This graph presents results from a study where participants listened to a podcast and indicated points they perceived as event boundaries. 
+                We then compared various AI segmentation methods, including EM-LLM, against these human annotations. 
+                The height of each bar represents how closely the method aligns with human judgments. 
+                Notably, our surprise-based approaches (S, SM, SC) consistently outperform fixed-interval methods (F, FM, FC), with EM-LLM closely mirroring human intuition. 
+                This alignment suggests that EM-LLM's event detection mechanism captures something fundamental about how humans naturally segment continuous experiences.
+            </p>
+
+        </section>
+
+        <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>EM-LLM represents a significant step forward in the development of language models with extended context-processing capabilities. By bridging insights from cognitive science with machine learning, our approach not only enhances the performance of LLMs on long-context tasks but also provides a scalable computational framework for testing hypotheses about human memory.</p>
+        </section>
+
+
+        <section id="cite">
+            <h2>Cite Us</h2>
+            <div class="citation-container">
+                <pre><code id="citationText">@inproceedings{FoundasEMLLM2024,
+            title={Human-like Episodic Memory for Infinite Context LLMs},
+            author={Fountas, Zafeirios and Benfeghoul, Martin A and Oomerjee, Adnan 
+                    and Christopoulou, Fenia and Lampouras, Gerasimos 
+                    and Bou-Ammar, Haitham and Wang, Jun},
+            booktitle={Proceedings of ICML},
+            year={2024}
+        }</code></pre>
+                <button id="copyButton" aria-label="Copy citation">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </div>
+        </section>
+    
+   
+        <script>
+        document.getElementById('copyButton').addEventListener('click', function() {
+            var citationText = document.getElementById('citationText').textContent;
+            navigator.clipboard.writeText(citationText).then(function() {
+                alert('Citation copied to clipboard!');
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        });
+        </script>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Huawei Noah's Ark Lab, London, UK</p>
+    </footer>
+</body>
+</html>
