@@ -144,13 +144,58 @@
                 <strong>Table 1:</strong> EM-LLM performance on LongBench compared to our baseline InfLLM. 
                 The "Best EM-LLM" column shows the highest score achieved by an EM-LLM variant (either with/out boundary refinement and contiguity buffer), with the relative improvement over InfLLM in parentheses.
             </p>
-            <p>
-                As you can see, EM-LLM shows consistent improvements, with standout performances in PassageRetrieval and HotpotQA.
+
+            <div class="table-container">
+                <table class="results-table concise">
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>InfLLM</th>
+                            <th>Best EM-LLM (Imp.)</th>
+                            <th>Task</th>
+                            <th>InfLLM</th>
+                            <th>Best EM-LLM (Imp.)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Code debug</td>
+                            <td>29.44</td>
+                            <td>29.7 <span class="improvement">(+0.9%)</span></td>
+                            <td>Passkey</td>
+                            <td>100</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>Math find</td>
+                            <td>26.57</td>
+                            <td>28.0 <span class="improvement">(+5.4%)</span></td>
+                            <td>Number string</td>
+                            <td>99.83</td>
+                            <td>99.83</td>
+                        </tr>
+                        <tr>
+                            <td>KV retrieval</td>
+                            <td>95.6</td>
+                            <td>99.0 <span class="improvement">(+3.6%)</span></td>
+                            <td><strong>Average Score:</strong></td>
+                            <td><strong>70.29</strong></td>
+                            <td><strong>71.31</strong> <span class="improvement">(+1.45%)</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="table-caption">
+                <strong>Table 2:</strong> EM-LLM performance on <a href="#" class="dataset-link"><strong>∞-Bench</strong></a> tasks compared to our baseline InfLLM.
             </p>
-            
+
             <p>
-                But wait, there's more! We're currently running tests with additional models and datasets, including <a href="#" class="dataset-link"><strong>∞-Bench</strong></a> with very promising results. 
-                Stay tuned for these expanded results, which will give an even fuller picture of EM-LLM's capabilities.
+                As you can see, EM-LLM shows consistent improvements, with standout performances in PassageRetrieval, HotpotQA and KV retrieval tasks.
+            </p>
+
+            <p>
+                But wait, there's more! We're currently running tests with additional models and datasets, including more <a href="#" class="dataset-link"><strong>∞-Bench</strong></a> tasks and extremely long context tasks (in the scale of millions of tokens), with very promising results. 
+                We'll be updating this page so stay tuned for these expanded results, which will give an even fuller picture of EM-LLM's capabilities.
             </p>
         </section>
 
@@ -162,10 +207,10 @@
             </p>
             <img src="Fig_human_res_llama2_2.svg" alt="Human-LLM Correlation in Event Segmentation" class="figure">
             <p>
-                This graph presents results from a study where participants listened to a podcast and indicated points they perceived as event boundaries. 
+                These graphs present results from a <a href="https://arxiv.org/abs/2301.10297">study</a> where participants listened to a podcast and indicated points they perceived as event boundaries. 
                 We then compared various AI segmentation methods, including EM-LLM, against these human annotations. 
                 The height of each bar represents how closely the method aligns with human judgments. 
-                Notably, our surprise-based approaches (S, SM, SC) consistently outperform fixed-interval methods (F, FM, FC), with EM-LLM closely mirroring human intuition. 
+                Notably, our surprise-based approaches (<b>S</b>, <b>SM</b>, <b>SC</b>) consistently outperform fixed-interval methods (<b>F</b>, <b>FM</b>, <b>FC</b>), with EM-LLM closely mirroring human intuition. 
                 This alignment suggests that EM-LLM's event detection mechanism captures something fundamental about how humans naturally segment continuous experiences.
             </p>
 
