@@ -43,7 +43,7 @@
             <h2>Summary</h2>
             <p>While typical large language models (LLMs) struggle with processing extensive contexts, the human brain excels at organising and retrieving experiences spanning a lifetime. In this work, we introduce <b>EM-LLM</b>, an architecture that integrates key aspects of human episodic memory and event cognition into LLMs with <b>no fine-tuning</b>, enabling them to handle practically infinite context lengths while maintaining computational efficiency.</p>
             <p>EM-LLM organises sequences of tokens into coherent episodic events using a combination of Bayesian surprise and graph-theoretic boundary refinement in an online fashion. When needed, these events are retrieved through a two-stage memory process, combining similarity-based and temporally contiguous retrieval for efficient and human-like access to relevant information.</p>
-            <p>Experiments on the <i><a href="https://github.com/THUDM/LongBench">LongBench</a></i> and <I><a href="https://github.com/OpenBMB/InfiniteBench">InfiniteBench</a></i> benchmarks demonstrate EM-LLM's superior performance, consistently outperforming the SOTA retrieval model <a href="https://arxiv.org/abs/2402.04617">InfLLM</a> across various baseline LLMs. In addition, EM-LLM <b>outperforms RAG</b> in a wide range of tasks, while requiring similar resources. Notably, EM-LLM's performance even <b>surpasses full-context models</b> in most tasks, while successfully performing retrieval across <b>10M tokens</b> - a scale computationally infeasible for such models. Our analysis reveals strong correlations between EM-LLM's event segmentation and human-perceived events, suggesting a bridge between this artificial system and its biological counterpart, thereby offering a novel computational framework for exploring human memory mechanisms.</p>
+            <p>Experiments on the <i><a class="dataset-link" href="https://github.com/THUDM/LongBench">LongBench</a></i> and <I><a class="dataset-link" href="https://github.com/OpenBMB/InfiniteBench">InfiniteBench</a></i> benchmarks demonstrate EM-LLM's superior performance, consistently outperforming the SOTA retrieval model <a class="dataset-link" href="https://arxiv.org/abs/2402.04617">InfLLM</a> across various baseline LLMs. In addition, EM-LLM <strong>outperforms <a class="dataset-link" href="#">SOTA RAG<a></a></strong> retrieval models in a wide range of tasks, while requiring similar resources. Notably, EM-LLM's performance even <b>surpasses full-context models</b> in most tasks, while successfully performing retrieval across <b>10M tokens</b> - a scale computationally infeasible for such models. Our analysis reveals strong correlations between EM-LLM's event segmentation and human-perceived events, suggesting a bridge between this artificial system and its biological counterpart, thereby offering a novel computational framework for exploring human memory mechanisms.</p>
         </section>
 
         <section id="architecture">
@@ -60,8 +60,18 @@
         <section id="results">
             <h2>Performance Results</h2>
             <p>
-                We tested EM-LLM on the <a href="#" class="dataset-link"><strong>LongBench</strong></a> dataset, across a wide range of long-context tasks, comparing it to the current state-of-the-art <a href="#" class="dataset-link"><strong>InfLLM</strong></a> model. Here's a quick look at how we did:
+                We tested EM-LLM on the <a href="#" class="dataset-link"><strong>LongBench</strong></a> and <a href="#" class="dataset-link"><strong>∞-Bench</strong></a> benchmarks, across a wide range of long-context tasks (including tasks with millions of tokens), comparing it to the current state-of-the-art in both RAG retrievals and other long-context models. Here's a quick look at how we did:
             </p>
+
+            <h3>EM-LLM vs RAG and full-context models</h3>
+            <p>
+            <div align="center">
+              <img src="./Fig_rag_fc_10M.svg" alt="emllm_rag_fc" width="40%"/>
+              **Figure:** **(Top)** EM-LLM$_S$ vs. RAG (NV-Embed-v2 retriever) vs. full-context, with LLaMA-3.1-8B as the base LLM, evaluated on LongBench. **(Bottom)** Comparison of various long-sequence methods (sorted based on their context window length) on an extended version of $\infty$-Bench's _Retrieve.PassKey_.
+            </div>
+            </p>
+      
+            <h3>EM-LLM vs <a href="#" class="dataset-link">InfLLM</a></h3>
             <div class="table-container">
                 <table class="results-table concise">
                     <thead>
@@ -196,8 +206,7 @@
             </p>
 
             <p>
-                But wait, there's more! We're currently running tests with additional models and datasets, including more <a href="#" class="dataset-link"><strong>∞-Bench</strong></a> tasks and extremely long context tasks (in the scale of millions of tokens), with very promising results. 
-                We'll be updating this page so stay tuned for these expanded results, which will give an even fuller picture of EM-LLM's capabilities.
+                But wait, there's more! We'll be updating this page so stay tuned for these expanded results, which will give an even fuller picture of EM-LLM's capabilities.
             </p>
         </section>
 
