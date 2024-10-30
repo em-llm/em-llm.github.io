@@ -228,3 +228,58 @@ footer {
 .author-link:hover {
     text-decoration: underline;
 }
+
+
+/*Tooltips*/
+
+.tooltip-trigger {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip {
+    position: absolute;  /* back to absolute */
+    left: 50%;  /* add this back */
+    transform: translateX(-50%);  /* add this back */
+    width: max-content;  /* new addition */
+    min-width: 200px;
+    max-width: 1700px;
+    bottom: 100%;  /* back to original */
+    top: auto;  /* remove the top property */
+
+    visibility: hidden;
+    background-color: #333;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.2s;
+    margin-bottom: 5px;
+    white-space: normal;
+    text-align: center;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.tooltip-trigger:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Preserve original link styling */
+a.tooltip-trigger {
+    color: inherit;
+    text-decoration: inherit;
+}

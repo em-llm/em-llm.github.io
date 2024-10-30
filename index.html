@@ -42,54 +42,10 @@
     <main>
         <section id="abstract">
 
-
-
-
-
-            <!--<div id="container"></div>
-            <script src="d3/d3.v7.js"></script>
-            <script type="module">
-            // Declare the chart dimensions and margins.
-            const width = 640;
-            const height = 400;
-            const marginTop = 20;
-            const marginRight = 20;
-            const marginBottom = 30;
-            const marginLeft = 40;
-            
-            // Declare the x (horizontal position) scale.
-            const x = d3.scaleUtc()
-                .domain([new Date("2023-01-01"), new Date("2024-01-01")])
-                .range([marginLeft, width - marginRight]);
-            
-            // Declare the y (vertical position) scale.
-            const y = d3.scaleLinear()
-                .domain([0, 100])
-                .range([height - marginBottom, marginTop]);
-            
-            // Create the SVG container.
-            const svg = d3.create("svg")
-                .attr("width", width)
-                .attr("height", height);
-            
-            // Add the x-axis.
-            svg.append("g")
-                .attr("transform", `translate(0,${height - marginBottom})`)
-                .call(d3.axisBottom(x));
-            
-            // Add the y-axis.
-            svg.append("g")
-                .attr("transform", `translate(${marginLeft},0)`)
-                .call(d3.axisLeft(y));
-            
-            // Append the SVG element.
-            container.append(svg.node());
-            </script>-->
-
-
-
             <h2>Summary</h2>
-            <p>While current large language models (LLMs) hit a wall with extensive contexts, the human brain effortlessly organizes and retrieves experiences spanning a lifetime. Drawing inspiration from human cognition, we introduce <span class="tooltip-trigger"><b>EM-LLM</b><span class="tooltip">Episodic Memory Language Model - our novel architecture that combines human-like memory mechanisms with LLMs.</span></span>, an architecture that integrates key aspects of human episodic memory and event cognition into LLMs with <span class="tooltip-trigger"><b>no fine-tuning required</b><span class="tooltip">The model works out of the box with any Transformer-based LLM without requiring additional training!</span></span>. Beyond achieving state-of-the-art (SOTA) performance on long-context tasks, EM-LLM's approach to information organization shows <a href="#human-correlation" class="tooltip-trigger">remarkable <strong>similarities to human memory patterns</strong><span class="tooltip">Our analysis reveals strong correlations between EM-LLM's event segmentation and human-perceived events - see the full analysis below</span></a>, suggesting we're on the right track in bridging artificial and biological information processing.</p>
+            <p>
+                While current large language models (LLMs) hit a wall with extensive contexts, the human brain effortlessly organizes and retrieves experiences spanning a lifetime. 
+                Drawing inspiration from human cognition, we introduce <span class="tooltip-trigger"><b>EM-LLM</b><span class="tooltip">Episodic Memory Language Model - our novel architecture that combines human-like memory mechanisms with LLMs.</span></span>, an architecture that integrates key aspects of human episodic memory and event cognition into LLMs with <span class="tooltip-trigger"><b>no fine-tuning required</b><span class="tooltip">The model works out of the box with any Transformer-based LLM without requiring additional training!</span></span>. Beyond achieving state-of-the-art (SOTA) performance on long-context tasks, EM-LLM's approach to information organization shows <a href="#human-correlation" class="tooltip-trigger">remarkable <strong>similarities to human memory patterns</strong><span class="tooltip">Our analysis reveals strong correlations between EM-LLM's event segmentation and human-perceived events - see the full analysis below</span></a>, suggesting we're on the right track in bridging artificial and biological information processing.</p>
 
             <p>At its core, EM-LLM organizes incoming information into coherent episodic events, much like how humans naturally segment their experiences. It does this through a sophisticated combination of Bayesian surprise detection and graph-theoretic boundary refinement, operating in real-time as information flows in. When needed, these events are retrieved through a two-stage memory process that mirrors human memory access patterns, combining similarity-based search with temporal relationships.</p>
 
@@ -98,84 +54,85 @@
 
         <section id="architecture">
             <h2>Architecture</h2>
-            <p>EM-LLM brings human-like memory capabilities to LLMs through three key innovations: An initial segmentation of the context window into <i>events</i> based on a metric of surprise (1), the refinement of the boundary of these events based on graph theory (2) and a two-stage memory retrieval process (3-4). The complete EM-LLM architecture showing all components and their interactions is shown below. You can hover over each section to explore the individual components.
+            <p>
+                EM-LLM brings human-like memory capabilities to LLMs through three key innovations: An initial segmentation of the context window into <i>events</i> based on a metric of surprise (1), the refinement of the boundary of these events based on graph theory (2) and a two-stage memory retrieval process (3-4). The complete EM-LLM architecture showing all components and their interactions is shown below. You can hover over each section to explore the individual components.
             </p>
             
-<div class="image-container" style="position: relative; width: 100%; max-width: 1000px; margin: 0 auto;">
-    <!-- Main image -->
-    <img id="archImage" src="Fig_architecture/1_all.svg" alt="EM-LLM Architecture" style="width: 100%;">
-    
-    <!-- Invisible buttons overlaying the image -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: grid; grid-template-rows: repeat(4, 1fr);">
-      <!-- Initial Segmentation -->
-      <div 
-        class="hover-area"
-        onmouseover="updateView('2_segmentation', 'Initial segmentation uses Bayesian surprise to detect potential event boundaries in the token stream.')"
-        onmouseout="resetView()"
-        style="background: transparent; cursor: pointer;">
-      </div>
-      
-      <!-- Refinement -->
-      <div 
-        class="hover-area"
-        onmouseover="updateView('3_refinement', 'Graph-theoretic boundary refinement optimizes the initial segmentation using temporal relationships.')"
-        onmouseout="resetView()"
-        style="background: transparent; cursor: pointer;">
-      </div>
-      
-      <!-- Cued Recall -->
-      <div 
-        class="hover-area"
-        onmouseover="updateView('4_cued', 'Cued recall retrieves relevant events using similarity-based search with kNN.')"
-        onmouseout="resetView()"
-        style="background: transparent; cursor: pointer;">
-      </div>
-      
-      <!-- Free Recall -->
-      <div 
-        class="hover-area"
-        onmouseover="updateView('5_free', 'Free recall combines similarity and temporal contiguity for more natural memory access.')"
-        onmouseout="resetView()"
-        style="background: transparent; cursor: pointer;">
-      </div>
-    </div>
-  </div>
- 
-</div>
+            <div class="image-container" style="position: relative; width: 100%; max-width: 1000px; margin: 0 auto;">
+                <!-- Main image -->
+                <img id="archImage" src="Fig_architecture/1_all.svg" alt="EM-LLM Architecture" style="width: 100%;">
+                
+                <!-- Invisible buttons overlaying the image -->
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: grid; grid-template-rows: repeat(4, 1fr);">
+                <!-- Initial Segmentation -->
+                <div 
+                    class="hover-area"
+                    onmouseover="updateView('2_segmentation', 'Initial segmentation uses Bayesian surprise to detect potential event boundaries in the token stream.')"
+                    onmouseout="resetView()"
+                    style="background: transparent; cursor: pointer;">
+                </div>
+                
+                <!-- Refinement -->
+                <div 
+                    class="hover-area"
+                    onmouseover="updateView('3_refinement', 'Graph-theoretic boundary refinement optimizes the initial segmentation using temporal relationships.')"
+                    onmouseout="resetView()"
+                    style="background: transparent; cursor: pointer;">
+                </div>
+                
+                <!-- Cued Recall -->
+                <div 
+                    class="hover-area"
+                    onmouseover="updateView('4_cued', 'Cued recall retrieves relevant events using similarity-based search with kNN.')"
+                    onmouseout="resetView()"
+                    style="background: transparent; cursor: pointer;">
+                </div>
+                
+                <!-- Free Recall -->
+                <div 
+                    class="hover-area"
+                    onmouseover="updateView('5_free', 'Free recall combines similarity and temporal contiguity for more natural memory access.')"
+                    onmouseout="resetView()"
+                    style="background: transparent; cursor: pointer;">
+                </div>
+                </div>
+            </div>
+            
+            </div>
 
-<style>
-.hover-area {
-  transition: background-color 0.3s;
-}
+            <style>
+            .hover-area {
+            transition: background-color 0.3s;
+            }
 
-.hover-area:nth-child(1):hover {
-  background-color: rgba(59, 130, 246, 0.1); /* blue */
-}
+            .hover-area:nth-child(1):hover {
+            background-color: rgba(59, 130, 246, 0.1); /* blue */
+            }
 
-.hover-area:nth-child(2):hover {
-  background-color: rgba(34, 197, 94, 0.1); /* green */
-}
+            .hover-area:nth-child(2):hover {
+            background-color: rgba(34, 197, 94, 0.1); /* green */
+            }
 
-.hover-area:nth-child(3):hover {
-  background-color: rgba(234, 179, 8, 0.1);  /* yellow */
-}
+            .hover-area:nth-child(3):hover {
+            background-color: rgba(234, 179, 8, 0.1);  /* yellow */
+            }
 
-.hover-area:nth-child(4):hover {
-  background-color: rgba(239, 68, 68, 0.1);  /* red */
-}
-</style>
+            .hover-area:nth-child(4):hover {
+            background-color: rgba(239, 68, 68, 0.1);  /* red */
+            }
+            </style>
 
-<script>
-function updateView(imageName, description) {
-  document.getElementById('archImage').src = `Fig_architecture/${imageName}.svg`;
-  document.getElementById('description').textContent = description;
-}
+            <script>
+            function updateView(imageName, description) {
+            document.getElementById('archImage').src = `Fig_architecture/${imageName}.svg`;
+            document.getElementById('description').textContent = description;
+            }
 
-function resetView() {
-  document.getElementById('archImage').src = 'Fig_architecture/1_all.svg';
-  document.getElementById('description').textContent = 'Complete EM-LLM architecture showing all components and their interactions.';
-}
-</script>
+            function resetView() {
+            document.getElementById('archImage').src = 'Fig_architecture/1_all.svg';
+            document.getElementById('description').textContent = 'Complete EM-LLM architecture showing all components and their interactions.';
+            }
+            </script>
 
 
 
@@ -488,11 +445,6 @@ function resetView() {
                     }
                 });
             </script>
-
-
-            <!--<p>
-                But wait, there's more! We'll be updating this page so stay tuned for these expanded results, which will give an even fuller picture of EM-LLM's capabilities.
-            </p>-->
         </section>
 
         <section id="human-correlation">
@@ -542,14 +494,14 @@ function resetView() {
     
    
         <script>
-        document.getElementById('copyButton').addEventListener('click', function() {
-            var citationText = document.getElementById('citationText').textContent;
-            navigator.clipboard.writeText(citationText).then(function() {
-                alert('Citation copied to clipboard!');
-            }, function(err) {
-                console.error('Could not copy text: ', err);
+            document.getElementById('copyButton').addEventListener('click', function() {
+                var citationText = document.getElementById('citationText').textContent;
+                navigator.clipboard.writeText(citationText).then(function() {
+                    alert('Citation copied to clipboard!');
+                }, function(err) {
+                    console.error('Could not copy text: ', err);
+                });
             });
-        });
         </script>
     </main>
 
